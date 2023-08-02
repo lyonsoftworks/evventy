@@ -1,0 +1,20 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/jlyon1/evvents/gen
+    except:
+      - buf.build/googleapis/googleapis
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: gen
+    opt: paths=source_relative
+  - name: go-grpc
+    out: gen
+    opt:
+      - paths=source_relative
+  - name: grpc-gateway
+    out: gen
+    opt:
+      - paths=source_relative
+      - generate_unbound_methods=true
